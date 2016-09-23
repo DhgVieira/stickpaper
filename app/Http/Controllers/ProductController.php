@@ -19,7 +19,7 @@ class ProductController extends Controller
     public function index()
     {
         $product = products::all();
-        return view('adminlte::products.product')->with('products', $product);
+        return view('products.product')->with('products', $product);
     }
 
     /**
@@ -27,7 +27,7 @@ class ProductController extends Controller
      */
     public function newAction()
     {
-        return view('adminlte::products.newproduct');
+        return view('products.newproduct');
     }
 
     /**
@@ -66,7 +66,7 @@ class ProductController extends Controller
             return Redirect::to('/product');
         }
 
-        return view('adminlte::products.editproduct')->with('product', $product);
+        return view('products.editproduct')->with('product', $product);
     }
 
     /**

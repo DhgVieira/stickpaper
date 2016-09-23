@@ -18,12 +18,12 @@ class ClientController extends Controller
     public function index()
     {
         $client = client::all();
-        return view('adminlte::clients.client')->with('clients', $client);
+        return view('clients.client')->with('clients', $client);
     }
 
     public function newAction()
     {
-        return view('adminlte::clients.newclient');
+        return view('clients.newclient');
     }
 
     public function createAction(Request $request)
@@ -59,7 +59,7 @@ class ClientController extends Controller
             return Redirect::to('/client');
         }
 
-        return view('adminlte::clients.editclient')->with('clients', $client);
+        return view('clients.editclient')->with('clients', $client);
     }
 
     /**
