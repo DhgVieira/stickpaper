@@ -22,11 +22,18 @@ class ProductController extends Controller
         return view('adminlte::products.product')->with('products', $product);
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function newAction()
     {
         return view('adminlte::products.newproduct');
     }
 
+    /**
+     * @param Request $request
+     * @return mixed
+     */
     public function createAction (Request $request)
     {
         try {
@@ -44,5 +51,73 @@ class ProductController extends Controller
         }
 
         return Redirect::to('/product');
+    }
+
+    /**
+     * @param $id
+     * @param Request $request
+     * @return $this
+     */
+    public function editAction($id, Request $request)
+    {
+        $product = products::where('id', $id)->first();
+        if (!$product) {
+            $request->session()->flash('message-error', 'Não foi possivel encontrar o produto!');
+            return Redirect::to('/product');
+        }
+
+        return view('adminlte::products.editproduct')->with('product', $product);
+    }
+
+    /**
+     * @param Request $request
+     * @return mixed
+     */
+    public function updateAction(Request $request)
+    {
+        $product = products::where('id', $request->request->get('id'))->first();
+
+        if (!$product) {
+            $request->session()->flash('message-error', 'Produto não Cadastrado!');
+            return Redirect::to('/product');
+        }
+        try {
+            $product->name = $request->request->get('nameProduct');
+            $product->price = $request->request->get('price');
+            $product->length = $request->request->get('length');
+            $product->update();
+
+            $request->session()->flash('message-success', 'Produto atualizado com sucesso!');
+        }
+        catch (\Exception $e) {
+            $request->session()->flash('message-error', 'Não foi possivel atualizar os dados do Produto!');
+        }
+        return Redirect::to('/product');
+
+    }
+
+    /**
+     * @param Request $request
+     * @param $id
+     * @return mixed
+     */
+    public function removeAction(Request $request, $id)
+    {
+        $product = products::where('id', $id);
+
+        if (!$product) {
+            $request->session()->flash('message-error', 'Não foi possivel excluir o produto!');
+            return Redirect::to('/product');
+        }
+        try {
+            $product->delete();
+
+            $request->session()->flash('message-success', 'Produto excluido com sucesso!');
+        }
+        catch (\Exception $e) {
+            $request->session()->flash('message-error', 'Não foi possivel excluir o produto!');
+        }
+        return Redirect::to('/product');
+
     }
 }

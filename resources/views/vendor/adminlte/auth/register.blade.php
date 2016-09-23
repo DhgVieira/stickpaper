@@ -25,7 +25,7 @@
 
         <div class="register-box-body">
             <p class="login-box-msg">{{ trans('adminlte_lang::message.registermember') }}</p>
-            <form action="{{ url('/register') }}" method="post">
+            <form action="{{ url('/admin/create') }}">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="form-group has-feedback">
                     <input type="text" class="form-control" placeholder="{{ trans('adminlte_lang::message.fullname') }}" name="name" value="{{ old('name') }}"/>
@@ -44,20 +44,17 @@
                     <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
                 </div>
                 <div class="row">
-                    {{--<div class="col-xs-1">--}}
-                        {{--<label>--}}
-                            {{--<div class="checkbox_register icheck">--}}
-                                {{--<label>--}}
-                                    {{--<input type="checkbox" name="terms">--}}
-                                {{--</label>--}}
-                            {{--</div>--}}
-                        {{--</label>--}}
-                    {{--</div><!-- /.col -->--}}
-                    {{--<div class="col-xs-6">--}}
-                        {{--<div class="form-group">--}}
-                            {{--<button type="button" class="btn btn-block btn-flat" data-toggle="modal" data-target="#termsModal">{{ trans('adminlte_lang::message.terms') }}</button>--}}
-                        {{--</div>--}}
-                    {{--</div><!-- /.col -->--}}
+                    <div class="col-xs-8">
+                        <label>
+                            <div class="checkbox_register icheck">
+
+                                <input type="checkbox" name="admin">
+                                <label for="admin">
+                                     Admin ?
+                                </label>
+                            </div>
+                        </label>
+                    </div><!-- /.col -->
                     <div class="col-xs-6">
                         <button type="submit" class="btn btn-primary btn-block btn-flat">{{ trans('adminlte_lang::message.register') }}</button>
                     </div><!-- /.col -->

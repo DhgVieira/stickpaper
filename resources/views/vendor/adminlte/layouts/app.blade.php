@@ -24,6 +24,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Main content -->
         <section class="content">
             <!-- Your Page Content Here -->
+            @if(Session::has('message-success'))
+                <div class="alert alert-success">
+                    <i class="fa fa-check-circle fa-fw fa-lg"></i>
+                    <span>{{ Session::get('message-success') }}</span>
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"><i class="fa fa-times"></i></button>
+                </div>
+            @endif
+            @if(Session::has('message-error'))
+                <div class="alert alert-danger">
+                    <i class="fa fa-times-circle fa-fw fa-lg"></i>
+                    <span>{{ Session::get('message-error') }}</span>
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"><i class="fa fa-times"></i></button>
+                </div>
+            @endif
             @yield('main-content')
         </section><!-- /.content -->
     </div><!-- /.content-wrapper -->

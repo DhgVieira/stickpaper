@@ -5,12 +5,13 @@
     <!-- Logo -->
 
     <a href="{{ url('/home') }}" class="logo">
-        <div class="logo logo-img" style="text-align: left; width: 50px; height: 50px;">
+        <div class="logo logo-lg" style="text-align: left; width: 50px; height: 50px;">
             <img src="/img/sticklogo.jpg" style="width: 35px; height: 35px;">
         </div>
 
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b>A</b>LT</span>
+        {{--<span class="logo-mini"><b>S</b>P</span>--}}
+        <img class="logo-mini" src="/img/sticklogo.jpg" style="width: 50px; height: 50px;">
         <!-- logo for regular state and mobile devices -->
         <span class="logo-lg" ><b>Stick</b>paper</span>
     </a>

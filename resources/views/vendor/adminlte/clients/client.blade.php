@@ -9,19 +9,6 @@
 @endsection
 
 @section('main-content')
-    @if(Session::has('message-success'))
-        <div class="alert alert-success">
-            <i class="fa fa-times-circle fa-fw fa-lg"></i>
-            <span>{{ Session::get('message-success') }}</span>
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-        </div>
-    @endif
-    @if(Session::has('message-error'))
-        <div class="alert alert-danger">
-            <i class="fa fa-times-circle fa-fw fa-lg"></i>
-            <span>{{ Session::get('message-error') }}</span>
-        </div>
-    @endif
     <div class="box box-solid">
         <div class="box-header">
             {{--<h3 class="box-title">Produtos</h3>--}}
@@ -79,8 +66,9 @@
                                         <td>{{$client->number}}</td>
                                         <td>{{date('d/m/Y', strtotime($client->created_at))}}</td>
                                         <td data-title="Actions">
-                                            <a href="http://teste-rlacerda83.rhcloud.com/hours-control/edit/805" title="" data-tooltip="true" class="table-link edit" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
-                                            <a href="http://teste-rlacerda83.rhcloud.com/hours-control/remove/805" title="" data-tooltip="true" data-title="Hours Control" data-confirm="Are you sure you want to remove this register?" class="table-link danger delete" data-original-title="Remove"><i class="fa fa-trash-o"></i></a></td>
+                                            <a href="{{url('/client/edit/'.$client->id)}}" title="" data-tooltip="true" class="btn btn-warning btn-xs" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
+                                            <a href="{{url('/client/remove/'.$client->id)}}" title="" data-tooltip="true" data-title="Cliente" data-confirm="Tem certeza que deseja remover o registro?" class="btn btn-danger btn-xs" data-original-title="Remove"><i class="fa fa-trash-o "></i></a>
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>

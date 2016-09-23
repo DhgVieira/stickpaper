@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\User;
 use Illuminate\Http\Request;
-
-use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
+use Validator;
+use App\Http\Requests;
 
 class AdminController extends Controller
 {
@@ -26,31 +27,37 @@ class AdminController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
+    public function validator(array $data)
     {
         return Validator::make($data, [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
-            'terms' => 'required',
         ]);
     }
 
     /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return User
+     * @param Request $request
+     * @return mixed
      */
-    protected function create(Request $request)
+    public function create(Request $request)
     {
-        $data = $request->request->get();
-        $this->validator($data);
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+        $data = $request->request->all();
+        try {
+            $this->validator($data);
+            User::create([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'admin' => isset($data['admin']) ? 1 : 0,
+                'password' => bcrypt($data['password']),
+                'remember_token' => true,
+            ]);
+            $request->session()->flash('message-success', 'Usuário Cadastrado com sucesso!');
+        }
+        catch (\Exception $e) {
+            $request->session()->flash('message-error', 'Não foi possivel cadastrao o usuário! erro:'.$e->getMessage());
+        }
+        return Redirect::to('/home');
     }
 
 }

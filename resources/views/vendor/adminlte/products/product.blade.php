@@ -7,19 +7,7 @@
     Produtos
 @endsection
 @section('main-content')
-    @if(Session::has('message-success'))
-        <div class="alert alert-success">
-            <i class="fa fa-times-circle fa-fw fa-lg"></i>
-            <span>{{ Session::get('message-success') }}</span>
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-        </div>
-    @endif
-    @if(Session::has('message-error'))
-        <div class="alert alert-danger">
-            <i class="fa fa-times-circle fa-fw fa-lg"></i>
-            <span>{{ Session::get('message-error') }}</span>
-        </div>
-    @endif
+
     <div class="box box-solid">
         <div class="box-header">
             <h3 class="box-title">Produtos</h3>
@@ -34,51 +22,40 @@
             <!-- Color Picker -->
             <div class="row">
                 <div class="col-xs-12">
-                    {{--<div class="box">--}}
-                        {{--<div class="box-header">--}}
-                            {{--<h3 class="box-title">Responsive Hover Table</h3>--}}
+                    <div class="box-body table-responsive no-padding">
+                        <table class="table table-hover table-striped">
+                            <tbody>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Preço</th>
+                                <th>Comprimento</th>
+                                <th>Data Criação</th>
+                                <th>Ações</th>
 
-
-                            {{--<div class="box-tools">--}}
-                                {{--<div class="input-group input-group-sm" style="width: 150px;">--}}
-                                    {{--<input type="text" name="table_search" class="form-control pull-right"--}}
-                                           {{--placeholder="Search">--}}
-
-                                    {{--<div class="input-group-btn">--}}
-                                        {{--<button type="submit" class="btn btn-default"><i class="fa fa-search"></i>--}}
-                                        {{--</button>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                        {{--<!-- /.box-header -->--}}
-                        <div class="box-body table-responsive no-padding">
-                            <table class="table table-hover table-striped">
-                                <tbody>
+                            </tr>
+                            @foreach($products as $product)
                                 <tr>
-                                    <th>Nome</th>
-                                    <th>Preço</th>
-                                    <th>Comprimento</th>
-                                    <th>Data Criação</th>
-                                    <th>Ações</th>
-
+                                    <td>{{$product->name}}</td>
+                                    <td>{{$product->price}}</td>
+                                    <td>{{$product->length}}</td>
+                                    <td>{{date('d/m/Y', strtotime($product->created_at))}}</td>
+                                    <td data-title="Actions">
+                                        <a href="{{url('/product/edit/'.$product->id)}}" title="" data-tooltip="true"
+                                           class="btn btn-warning btn-xs" data-original-title="Edit"><i
+                                                    class="fa fa-pencil"></i></a>
+                                        <a href="{{url('/product/remove/'.$product->id)}}" title="" data-tooltip="true"
+                                           data-title="Cliente"
+                                           data-confirm="Tem certeza que deseja remover o registro?"
+                                           class="btn btn-danger btn-xs" data-original-title="Remove"><i
+                                                    class="fa fa-trash-o "></i></a>
+                                    </td>
                                 </tr>
-                                @foreach($products as $product)
-                                    <tr>
-                                        <td>{{$product->name}}</td>
-                                        <td>{{$product->price}}</td>
-                                        <td>{{$product->length}}</td>
-                                        <td>{{date('d/m/Y', strtotime($product->created_at))}}</td>
-                                        <td data-title="Actions">
-                                            <a href="http://teste-rlacerda83.rhcloud.com/hours-control/edit/805" title="" data-tooltip="true" class="table-link edit" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
-                                            <a href="http://teste-rlacerda83.rhcloud.com/hours-control/remove/805" title="" data-tooltip="true" data-title="Hours Control" data-confirm="Are you sure you want to remove this register?" class="table-link danger delete" data-original-title="Remove"><i class="fa fa-trash-o"></i></a></td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
-                        </div>
+                            @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 @endsection
