@@ -8,7 +8,8 @@
 <script src="{{ asset('/js/adminlte-app.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('/js/modal.js')}}" type="text/javascript"></script>
 <script src="{{ asset('/js/bootbox.min.js') }}" type="text/javascript"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.12.0/moment-with-locales.min.js"></script>
+<script src="https://cdn.jsdelivr.net/bootstrap.datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
       Both of these plugins are recommended to enhance the
       user experience. Slimscroll is required when using the

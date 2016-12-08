@@ -42,6 +42,10 @@
                             <label for="number">Numero</label>
                             <input type="number" id="number" name="number" class="form-control text-aqua" value="{{$clients->number}}"/>
                         </div>
+                        <div class="form-group">
+                            <label for="number">Saldo</label>
+                            <input type="number" id="number" name="number" class="form-control text-aqua" value="{{$clients->balance}}"/>
+                        </div>
                     </div>
                     <!-- /.row -->
                 </div>

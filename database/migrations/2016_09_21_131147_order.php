@@ -16,8 +16,9 @@ class Order extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
             $table->string('order_number', 255);
-            $table->decimal('cost', 5, 2);
+            $table->decimal('cost', 16, 6);
             $table->integer('qty');
+            $table->timestamp('agreement_at');
             $table->integer('client_id')->unsigned();
             $table->foreign('client_id')
                 ->references('id')->on('clients')

@@ -19,6 +19,7 @@
                         <div class="form-group">
                             <label for="nameProduct">Nome do Produto</label>
                             <input type="text" id="nameProduct" name="nameProduct" class="form-control text-aqua"/>
+                            <input type="hidden" id="url" name="url" class="form-control text-aqua" value="{{$urlPrevious}}"/>
                         </div>
                         <div class="form-group">
                             <label for="price">Preço</label>

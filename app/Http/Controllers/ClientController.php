@@ -17,7 +17,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $client = client::all();
+        $client = client::paginate(15);
         return view('clients.client')->with('clients', $client);
     }
 
@@ -37,6 +37,7 @@ class ClientController extends Controller
             $client->city = $request->request->get('city');
             $client->neighborhood = $request->request->get('neighborhood');
             $client->number = $request->request->get('number');
+            $client->balance = $request->request->get('balance');
             $client->save();
 
             $request->session()->flash('message-success', 'Cliente Cadastrado com sucesso!');
@@ -81,6 +82,7 @@ class ClientController extends Controller
             $client->city = $request->request->get('city');
             $client->neighborhood = $request->request->get('neighborhood');
             $client->number = $request->request->get('number');
+            $client->balance = $request->request->get('balance');
 
             $client->update();
 

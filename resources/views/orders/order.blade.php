@@ -4,17 +4,17 @@
     Produtos
 @endsection
 @section('contentheader_title')
-    Produtos
+    Pedidos
 @endsection
 @section('main-content')
 
     <div class="box box-solid">
         <div class="box-header">
-            <h3 class="box-title">Produtos</h3>
+            <h3 class="box-title">Pedidos</h3>
             <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
-                <a href="{{ URL::route('product.new') }}" class="btn btn-success"><i class="fa fa-plus"> Cadastrar </i></a>
+                <a href="{{ URL::route('order.new') }}" class="btn btn-success"><i class="fa fa-plus"> Cadastrar </i></a>
             </div>
         </div>
 
@@ -23,27 +23,34 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="box-body table-responsive no-padding">
+
                         <table class="table table-hover table-striped">
                             <tbody>
                             <tr>
-                                <th>Nome</th>
-                                <th>Preço</th>
-                                <th>Comprimento</th>
-                                <th>Data Criação</th>
+                                <th>Número do Pedido</th>
+                                <th>Nome do Cliente</th>
+                                <th>Produto</th>
+                                <th>Status do Pedido</th>
+                                <th>Custo</th>
+                                <th>Data Acordada</th>
+                                <th>Data de Criação</th>
                                 <th>Ações</th>
 
                             </tr>
-                            @foreach($products as $product)
+                            @foreach($orders as $order)
                                 <tr>
-                                    <td>{{$product->name}}</td>
-                                    <td>{{$product->price}}</td>
-                                    <td>{{$product->length}}</td>
-                                    <td>{{date('d/m/Y', strtotime($product->created_at))}}</td>
+                                    <td>{{$order->order_number}}</td>
+                                    <td>{{$order->client->name}}</td>
+                                    <td>{{$order->product->name}}</td>
+                                    <td>{{$order->status->name}}</td>
+                                    <td>{{$order->cost}}</td>
+                                    <td>{{date('d/m/Y H:i:s', strtotime($order->agreement_at))}}</td>
+                                    <td>{{date('d/m/Y', strtotime($order->created_at))}}</td>
                                     <td data-title="Actions">
-                                        <a href="{{url('/product/edit/'.$product->id)}}" title="" data-tooltip="true"
+                                        <a href="{{url('/order/edit/'.$order->id)}}" title="" data-tooltip="true"
                                            class="btn btn-info btn-xs" data-original-title="Edit"><i
                                                     class="fa fa-pencil"></i></a>
-                                        <a href="{{url('/product/remove/'.$product->id)}}" title="" data-tooltip="true"
+                                        <a href="{{url('/order/remove/'.$order->id)}}" title="" data-tooltip="true"
                                            data-title="Cliente"
                                            data-confirm="Tem certeza que deseja remover o registro?"
                                            class="btn btn-danger btn-xs" data-original-title="Remove"><i
@@ -56,7 +63,7 @@
                     </div>
                 </div>
             </div>
-            {{ $products->links('vendor.pagination.bootstrap-4') }}
+            {{ $orders->links('vendor.pagination.bootstrap-4') }}
         </div>
     </div>
 

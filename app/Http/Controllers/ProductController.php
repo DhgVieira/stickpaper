@@ -18,16 +18,18 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $product = products::all();
+        $product = products::paginate(15);
         return view('products.product')->with('products', $product);
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @param Request $request
+     * @return $this
      */
-    public function newAction()
+    public function newAction(Request $request)
     {
-        return view('products.newproduct');
+        $returnUrl = $request->session()->previousUrl();
+        return view('products.newproduct')->with('urlPrevious', $returnUrl);
     }
 
     /**
@@ -37,20 +39,18 @@ class ProductController extends Controller
     public function createAction (Request $request)
     {
         try {
-
-        $product = new products();
-        $product->name = $request->request->get('nameProduct');
-        $product->price = $request->request->get('price');
-        $product->length = $request->request->get('length');
-        $product->save();
-
-        $request->session()->flash('message-success', 'Produto Cadastrado com sucesso!');
+            $product = new products();
+            $product->name = $request->request->get('nameProduct');
+            $product->price = $request->request->get('price');
+            $product->length = $request->request->get('length');
+            $product->save();
+            $request->session()->flash('message-success', 'Produto Cadastrado com sucesso!');
         }
         catch (\Exception $e) {
             $request->session()->flash('message-error', 'Produto não Cadastrado!'.$e->getMessage());
         }
 
-        return Redirect::to('/product');
+        return Redirect::to($request->request->get('url'));
     }
 
     /**
@@ -60,13 +60,14 @@ class ProductController extends Controller
      */
     public function editAction($id, Request $request)
     {
+        $returnUrl = $request->session()->previousUrl();
         $product = products::where('id', $id)->first();
         if (!$product) {
             $request->session()->flash('message-error', 'Não foi possivel encontrar o produto!');
-            return Redirect::to('/product');
+            return Redirect::to($request->session()->previousUrl());
         }
 
-        return view('products.editproduct')->with('product', $product);
+        return view('products.editproduct')->with('product', $product)->with('urlPrevious', $returnUrl);
     }
 
     /**
@@ -79,7 +80,7 @@ class ProductController extends Controller
 
         if (!$product) {
             $request->session()->flash('message-error', 'Produto não Cadastrado!');
-            return Redirect::to('/product');
+            return Redirect::to($request->request->get('url'));
         }
         try {
             $product->name = $request->request->get('nameProduct');
@@ -92,7 +93,7 @@ class ProductController extends Controller
         catch (\Exception $e) {
             $request->session()->flash('message-error', 'Não foi possivel atualizar os dados do Produto!');
         }
-        return Redirect::to('/product');
+        return Redirect::to($request->request->get('url'));
 
     }
 
@@ -117,7 +118,7 @@ class ProductController extends Controller
         catch (\Exception $e) {
             $request->session()->flash('message-error', 'Não foi possivel excluir o produto!');
         }
-        return Redirect::to('/product');
+        return Redirect::to($request->session()->previousUrl());
 
     }
 }

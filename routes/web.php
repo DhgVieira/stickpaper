@@ -34,12 +34,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/order', 'OrderController@index');
     Route::get('/order/new',  ['as' => 'order.new', 'uses' => 'OrderController@newAction']);
     Route::get('/order/create',  ['as' => 'order.create', 'uses' => 'OrderController@createAction']);
-    Route::get('/order/edit/{id}',  ['as' => 'product.edit', 'uses' => 'ProductController@editAction']);
-    Route::get('/order/update',  ['as' => 'product.update', 'uses' => 'ProductController@updateAction']);
-    Route::get('/order/remove/{id}',  ['as' => 'product.remove', 'uses' => 'ProductController@removeAction']);
-
+    Route::get('/order/edit/{id}',  ['as' => 'order.edit', 'uses' => 'OrderController@editAction']);
+    Route::get('/order/update',  ['as' => 'order.update', 'uses' => 'OrderController@updateAction']);
+    Route::get('/order/remove/{id}',  ['as' => 'order.remove', 'uses' => 'OrderController@removeAction']);
 
     Route::get('/admin', 'AdminController@showRegistrationForm');
     Route::get('/admin/create', 'AdminController@create');
 });
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');

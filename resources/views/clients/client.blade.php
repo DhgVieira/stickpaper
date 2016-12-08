@@ -24,24 +24,7 @@
             <!-- Color Picker -->
             <div class="row">
                 <div class="col-xs-12">
-                    {{--<div class="box">--}}
-                        {{--<div class="box-header">--}}
-                            {{--<h3 class="box-title">Responsive Hover Table</h3>--}}
 
-
-                            {{--<div class="box-tools">--}}
-                                {{--<div class="input-group input-group-sm" style="width: 150px;">--}}
-                                    {{--<input type="text" name="table_search" class="form-control pull-right"--}}
-                                           {{--placeholder="Search">--}}
-
-                                    {{--<div class="input-group-btn">--}}
-                                        {{--<button type="submit" class="btn btn-default"><i class="fa fa-search"></i>--}}
-                                        {{--</button>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                        {{--<!-- /.box-header -->--}}
                         <div class="box-body table-responsive no-padding">
                             <table class="table table-hover table-striped">
                                 <tbody>
@@ -52,6 +35,7 @@
                                     <th>Cidade</th>
                                     <th>Bairro</th>
                                     <th>Numero</th>
+                                    <th>Saldo</th>
                                     <th>Data de Criação</th>
                                     <th>Ações</th>
 
@@ -64,9 +48,10 @@
                                         <td>{{$client->city}}</td>
                                         <td>{{$client->neighborhood}}</td>
                                         <td>{{$client->number}}</td>
+                                        <td>{{$client->balance}}</td>
                                         <td>{{date('d/m/Y', strtotime($client->created_at))}}</td>
                                         <td data-title="Actions">
-                                            <a href="{{url('/client/edit/'.$client->id)}}" title="" data-tooltip="true" class="btn btn-warning btn-xs" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
+                                            <a href="{{url('/client/edit/'.$client->id)}}" title="" data-tooltip="true" class="btn btn-info btn-xs" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
                                             <a href="{{url('/client/remove/'.$client->id)}}" title="" data-tooltip="true" data-title="Cliente" data-confirm="Tem certeza que deseja remover o registro?" class="btn btn-danger btn-xs" data-original-title="Remove"><i class="fa fa-trash-o "></i></a>
                                         </td>
                                     </tr>
@@ -76,6 +61,7 @@
                         </div>
                     </div>
                 </div>
+                {{ $clients->links('vendor.pagination.bootstrap-4') }}
             </div>
         </div>
 @endsection

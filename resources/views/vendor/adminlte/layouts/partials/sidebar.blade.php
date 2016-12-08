@@ -3,7 +3,7 @@
 <script type="text/javascript">
 
     $(document).ready(function() {
-        $(".active").removeClass("active");
+        $(".sidebar-menu .active").removeClass("active");
         console.log(window.location.href);
         $("li a[href='"+window.location.href+"']").parent().addClass("active");
     });
@@ -46,6 +46,7 @@
             <li class="active"><a href="{{ url('home') }}"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.home') }}</span></a></li>
             <li><a href="{{ url('product') }}" id="product"><i class='fa fa-plus'></i> <span>Produtos</span></a></li>
             <li><a href="{{ url('client') }}" id="client"><i class='fa fa-user'></i> <span>Clientes</span></a></li>
+            <li><a href="{{ url('order') }}" id="client"><i class='fa fa-money'></i> <span>Pedidos</span></a></li>
             <li class="treeview">
                 <a href="#"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.multilevel') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">

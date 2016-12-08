@@ -18,6 +18,7 @@
                         <div class="form-group">
                             <input type="hidden" name="id" value="{{$product->id}}">
                             <label for="nameProduct">Nome do Produto</label>
+                            <input type="hidden" id="url" name="url" class="form-control text-aqua" value="{{$urlPrevious}}"/>
                             <input type="text" id="nameProduct" name="nameProduct" class="form-control text-aqua" value="{{$product->name}}"/>
                         </div>
                         <div class="form-group">

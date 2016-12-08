@@ -40,6 +40,11 @@
                         <label for="number">Numero</label>
                         <input type="number" id="number" name="number" class="form-control text-aqua"/>
                          </div>
+
+                        <div class="form-group">
+                            <label for="balance">Saldo</label>
+                            <input type="number" id="balance" name="balance" class="form-control text-aqua"/>
+                        </div>
                     </div>
                     <!-- /.row -->
                 </div>
