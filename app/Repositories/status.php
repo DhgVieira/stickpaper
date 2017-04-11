@@ -8,5 +8,4 @@ class status extends Model
 {
     protected  $table = 'status';
 
-    protected $timestamps = true;
 }

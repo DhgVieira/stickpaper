@@ -5,6 +5,11 @@
 @endsection
 
 @section('content')
+    <style>
+        .form-control {
+            color:  #333438 !important;
+        }
+    </style>
 
     <body class="hold-transition register-page">
     <div class="register-box">

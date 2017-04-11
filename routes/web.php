@@ -37,11 +37,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/order/edit/{id}',  ['as' => 'order.edit', 'uses' => 'OrderController@editAction']);
     Route::get('/order/update',  ['as' => 'order.update', 'uses' => 'OrderController@updateAction']);
     Route::get('/order/remove/{id}',  ['as' => 'order.remove', 'uses' => 'OrderController@removeAction']);
-
     Route::get('/admin', 'AdminController@showRegistrationForm');
     Route::get('/admin/create', 'AdminController@create');
-});
 
+});
 
 Auth::routes();
 

@@ -5,7 +5,11 @@
 @endsection
 
 @section('content')
-
+    <style>
+        .form-control {
+            color:  #333438 !important;
+        }
+    </style>
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">

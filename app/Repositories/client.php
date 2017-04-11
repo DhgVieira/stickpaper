@@ -6,6 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class client extends Model
 {
-    protected $timestamps = true;
     //
 }

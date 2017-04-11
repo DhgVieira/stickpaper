@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class order extends Model
 {
-    protected $timestamps = true;
     /**
      * Get the phone record associated with the user.
      */
