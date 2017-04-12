@@ -27,7 +27,6 @@
                 </ul>
             </div>
         @endif
-
         <div class="register-box-body">
             <p class="login-box-msg">{{ trans('adminlte_lang::message.registermember') }}</p>
             <form action="{{ url('/admin/create') }}">
